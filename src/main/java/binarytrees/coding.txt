@@ -1,0 +1,31 @@
+Paths with Sum: You are given a binary tree in which each node contains an integer value (which might be positive or negative).
+Design an algorithm to count the number of paths that sum to a given value. The path does not need to start or end at the root or a leaf,
+but it must go downwards (traveling only from parent nodes to child nodes).
+
+List<Node> nodesList;
+
+for (Node node: nodesList)
+{
+  findPath(node, sum);
+}
+
+private void findPath(Node node, int sum)
+{
+    dfs(node,sum, 0);
+}
+
+private boolen dfs(Node node, int sum, int currentSum)
+{
+   currentSum = currentSum + node.value();
+   if (currentSum == sum)
+    return true;
+
+   if (currentSum > sum)
+    return false;
+
+    boolean retValue = dfs(node.leftChild, sum, currentSum);
+    if (retValue == true)
+     return true;
+
+    dfs(node.rightChild, sum, currentSum);
+}
